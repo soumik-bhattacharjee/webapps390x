@@ -1,0 +1,14 @@
+arch: s390x
+services:
+  - docker
+script: 
+    docker build -t webapps390x -f Dockerfile .
+before_deploy:
+    - docker tag  webapps390x  "$DOCKER_USERNAME"/webapps390x:latest
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin  
+deploy:
+  provider: script
+  script: 
+     docker push "$DOCKER_USERNAME"/webapps390x:latest
+  on:
+    branch: master  
