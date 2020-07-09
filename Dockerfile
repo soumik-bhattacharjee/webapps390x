@@ -16,13 +16,13 @@ RUN yum install mono-devel xsp -y
 
 ADD Index.aspx /usr/lib/xsp/test/Index.aspx
 ADD Index.aspx.cs /usr/lib/xsp/test/Index.aspx.cs
-ADD Index.aspx.cs /usr/lib/xsp/test/Index.aspx.designer.cs
+#ADD Index.aspx.cs /usr/lib/xsp/test/Index.aspx.designer.cs
 
 VOLUME /app
 WORKDIR /usr/lib/xsp/test
 #ADD samp.aspx app/samp.aspx
 
-RUN mcs /t:library /out:webapps390x.dll -r:System.Web -r:System.Data -r:System.Drawing Index.aspx.cs Index.aspx.designer.cs
+RUN mcs /t:library /out:webapps390x.dll -r:System.Web -r:System.Data -r:System.Drawing Index.aspx.cs
 
 EXPOSE 9090
 ENTRYPOINT [ "xsp4","--port","9090","--nonstop"]
