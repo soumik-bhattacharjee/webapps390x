@@ -12,3 +12,4 @@ deploy:
      docker push "$DOCKER_USERNAME"/webapps390x:latest
   on:
     branch: master  
+    
